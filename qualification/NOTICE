@@ -1,0 +1,7 @@
+Original diagnostic probes and synthetic fixtures by brodyga45, 20 October 2026, using OpenAI Codex.
+Distributed under the repository AGPL-3.0-only license.
+
+Panel probes call public Panel APIs without redistributing Panel source. Panel is BSD-3-Clause.
+The minimal docs fixture is a synthetic adaptation of the public example in mkdocstrings/python issue346; no Frequenz source or documentation is included. mkdocstrings-python is ISC-licensed.
+Library dependencies retain their own licenses.
+No assignment, customer acceptance, upstream endorsement, fix, payment or human review is claimed.

@@ -1,0 +1,6 @@
+Markdown==3.11
+griffelib==2.3.0
+mkdocs==1.6.1
+mkdocs-autorefs==1.4.4
+mkdocstrings==1.0.6
+pymdown-extensions==11.0.2

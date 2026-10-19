@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-20",
+  "scope": "Diagnostic qualification, synthetic input. No fixes or complete customer builds.",
+  "panel": {
+    "version": "1.9.4",
+    "pandas": "2.3.3",
+    "python": "3.12.11",
+    "cases": [
+      {
+        "pagination": "local",
+        "page_size": 10,
+        "follow": true,
+        "python_rows_after": 4,
+        "client_source_rows_after": 4,
+        "delta_in_client_source": true
+      },
+      {
+        "pagination": "remote",
+        "page_size": 10,
+        "follow": true,
+        "python_rows_after": 4,
+        "client_source_rows_after": 3,
+        "delta_in_client_source": false
+      },
+      {
+        "pagination": "remote",
+        "page_size": 3,
+        "follow": true,
+        "python_rows_after": 4,
+        "client_source_rows_after": 1,
+        "delta_in_client_source": true
+      },
+      {
+        "pagination": "remote",
+        "page_size": 10,
+        "follow": false,
+        "python_rows_after": 4,
+        "client_source_rows_after": 3,
+        "delta_in_client_source": false
+      }
+    ],
+    "limit": "Bokeh model-source checks only; no browser rendering test."
+  },
+  "namespace_inference": {
+    "version": "1.9.4",
+    "two_namespace_imports": [
+      "plaidcloud"
+    ],
+    "explicit_requirements_retains": [
+      "plaidcloud-rpc",
+      "plaidcloud-utilities"
+    ],
+    "limit": "Import statements parsed, never executed; no package or Pyodide application compatibility claim."
+  },
+  "docs": {
+    "python": "3.12.11",
+    "common_versions": {
+      "mkdocs": "1.6.1",
+      "mkdocstrings": "1.0.6",
+      "mkdocs-autorefs": "1.4.4",
+      "griffelib": "2.3.0",
+      "pymdown-extensions": "11.0.2",
+      "Markdown": "3.11"
+    },
+    "handler_2_0_8": {
+      "strict_build_exit": 0,
+      "unresolved_crossrefs": 0
+    },
+    "handler_2_0_9": {
+      "strict_build_exit": 1,
+      "unresolved_crossrefs": 3
+    },
+    "targets": [
+      "pkg._base.Derived",
+      "pkg._base.helper",
+      "pkg._base.helper"
+    ],
+    "limit": "Synthetic fixture only, no SDK checkout/full build. No link-target regression harness or resolver fix provided."
+  }
+}

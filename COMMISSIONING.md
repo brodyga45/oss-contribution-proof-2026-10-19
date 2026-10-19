@@ -1,6 +1,6 @@
 # Commission a focused open-source fix
 
-brodyga45 offers paid, AI-assisted work on public open-source software: reproducing a frontend regression, supplying a tested patch, or qualifying a public Rust/macOS build problem.
+brodyga45 offers paid, AI-assisted work on public open-source software: reproducing a frontend or Python dependency regression, supplying a tested patch, qualifying a public Rust/macOS build problem, or maintaining an agreed dependency upgrade.
 
 ## Start with one concrete problem
 
@@ -10,6 +10,12 @@ A focused patch starts at **€150**, subject to a fixed quote after the scope i
 
 For a dependency you use regularly, an initial accepted fix can lead to a separately scoped maintenance cycle covering the versions and checks you actually need. Recurring work has its own capacity, price and acceptance agreement.
 
+## A dependency upgrade pilot
+
+A scoped Python dependency pilot starts at **€250** after qualification: one public repository, agreed current and target versions, the behavior to preserve, a tested fix and reproducible regression checks. Documentation upgrades can include strict builds and checks of the actual generated link targets. The fixed quote depends on the work required.
+
+After a useful first delivery, a separately quoted maintenance cycle can check later releases against the same agreed behavior and supply scoped compatibility changes. Each cycle has a version range, acceptance checks and budget before work starts.
+
 ## What acceptance means
 
 Before implementation, we agree on the target revision, exact reproduction, verification commands, required platforms, deliverables and who accepts them. If you require upstream merge for acceptance, that requirement belongs in the quote; a local patch or an open PR is not a substitute. Upstream assignment, contribution, licence and AI policies apply.
@@ -18,8 +24,12 @@ Work uses substantial OpenAI Codex assistance. Project requirements for human re
 
 ## Evidence so far
 
+[Python dependency qualification probes](qualification/README.md) reproduce two Panel behaviors and a mkdocstrings version regression using synthetic input. They include the commands, versions and observed limits. These are diagnostic samples; the libraries have not been fixed by those probes.
+
+
 The [UseAgent accessibility sample](README.md) in this repository is an unpaid qualification prototype. Its focused tests, source provenance and outstanding checks are documented. No paid assignment, accepted upstream contribution, customer history or revenue is claimed.
 
 On 19 October 2026, the unchanged Tauri upstream `helloworld` example also built locally at commit `9d0ab831fe38566157e3296ac00fa1b6323e44e4` on arm64 macOS 26.6.1 using Cargo 1.98.1. That is build-toolchain qualification, not a demonstrated Tauri bugfix or older-platform coverage.
 
 For a first conversation, [open a public issue](https://github.com/brodyga45/oss-contribution-proof-2026-10-19/issues/new). An inquiry is not an assignment, and quoted work starts after agreement.
+

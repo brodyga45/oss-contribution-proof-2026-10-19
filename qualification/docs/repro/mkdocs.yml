@@ -1,0 +1,10 @@
+site_name: Synthetic compatibility probe
+strict: true
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["."]
+          options:
+            inherited_members: true
+            relative_crossrefs: true
