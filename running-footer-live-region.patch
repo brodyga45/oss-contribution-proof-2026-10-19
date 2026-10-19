@@ -1,0 +1,89 @@
+diff --git a/frontend/components/pro/running-footer.test.tsx b/frontend/components/pro/running-footer.test.tsx
+index ea840e4..686611d 100644
+--- a/frontend/components/pro/running-footer.test.tsx
++++ b/frontend/components/pro/running-footer.test.tsx
+@@ -13,6 +13,58 @@ const status: RunningStatus = {
+   agentsDone: 2,
+ };
+ 
++async function liveStatus(html: string) {
++  let text = "";
++  let regions = 0;
++  let clocks = 0;
++  let controls = 0;
++  await new HTMLRewriter()
++    .on('[role="status"]', {
++      element() { regions += 1; },
++      text(chunk) { text += chunk.text; },
++    })
++    .on('[role="status"] .tabular-nums', {
++      element() { clocks += 1; },
++    })
++    .on('[role="status"] button', {
++      element() { controls += 1; },
++    })
++    .transform(new Response(html))
++    .text();
++  return { text: text.replace(/\s+/g, " ").trim(), regions, clocks, controls };
++}
++
++test("announces the phase and step without putting the ticking clock or controls in the live region", async () => {
++  const html = renderToStaticMarkup(
++    <RunningFooter
++      status={status}
++      model="Claude Sonnet 5"
++      startedAt={new Date(Date.now() - 65_000).toISOString()}
++      onStop={() => {}}
++    />,
++  );
++  expect(await liveStatus(html)).toEqual({
++    text: "Working. bun run typecheck",
++    regions: 1,
++    clocks: 0,
++    controls: 0,
++  });
++});
++
++test("elapsed changes leave the announcement alone, while a new phase and step change it", async () => {
++  const render = (seconds: number, value = status) => renderToStaticMarkup(
++    <RunningFooter status={value} model="m" startedAt={new Date(Date.now() - seconds * 1000).toISOString()} />,
++  );
++  const initial = await liveStatus(render(65));
++  expect(await liveStatus(render(125))).toEqual(initial);
++  expect((await liveStatus(render(125, {
++    ...status,
++    phase: "delegating",
++    label: "Delegating Verify checkout",
++    sentence: "Running the suite",
++  }))).text).toBe("Delegating Verify checkout. Running the suite");
++});
++
+ test("renders the phase chip, the current step, the elapsed time and the Stop control", () => {
+   const startedAt = new Date(Date.now() - 65_000).toISOString();
+   const html = renderToStaticMarkup(
+diff --git a/frontend/components/pro/running-footer.tsx b/frontend/components/pro/running-footer.tsx
+index 5852550..c451e97 100644
+--- a/frontend/components/pro/running-footer.tsx
++++ b/frontend/components/pro/running-footer.tsx
+@@ -32,7 +32,6 @@ export function RunningFooter({
+   return (
+     <div
+       data-session-ui="running-footer"
+-      role="status"
+       className="mb-1.5 flex min-h-[26px] w-full items-center gap-2 px-1"
+     >
+       <Dropdown>
+@@ -57,7 +56,12 @@ export function RunningFooter({
+           />
+         </DropdownPopover>
+       </Dropdown>
+-      <span className="min-w-0 flex-1 truncate text-body-2-regular text-text-secondary">
++      {/* Keep the self-ticking timer and controls outside the status announcement. */}
++      <span
++        role="status"
++        className="min-w-0 flex-1 truncate text-body-2-regular text-text-secondary"
++      >
++        <span className="sr-only">{status.label}. </span>
+         {status.sentence}
+       </span>
+       {elapsed && (

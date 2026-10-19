@@ -1,0 +1,122 @@
+import { expect, test } from "bun:test";
+import { renderToStaticMarkup } from "react-dom/server";
+import { RunningFooter } from "./running-footer";
+import { deriveRunningStartedAt, type RunningStatus } from "./running-phase";
+import type { ApiStep } from "@/components/chat/types";
+
+const status: RunningStatus = {
+  phase: "working",
+  label: "Working",
+  sentence: "bun run typecheck",
+  toolCalls: 3,
+  agentsRunning: 1,
+  agentsDone: 2,
+};
+
+async function liveStatus(html: string) {
+  let text = "";
+  let regions = 0;
+  let clocks = 0;
+  let controls = 0;
+  await new HTMLRewriter()
+    .on('[role="status"]', {
+      element() { regions += 1; },
+      text(chunk) { text += chunk.text; },
+    })
+    .on('[role="status"] .tabular-nums', {
+      element() { clocks += 1; },
+    })
+    .on('[role="status"] button', {
+      element() { controls += 1; },
+    })
+    .transform(new Response(html))
+    .text();
+  return { text: text.replace(/\s+/g, " ").trim(), regions, clocks, controls };
+}
+
+test("announces the phase and step without putting the ticking clock or controls in the live region", async () => {
+  const html = renderToStaticMarkup(
+    <RunningFooter
+      status={status}
+      model="Claude Sonnet 5"
+      startedAt={new Date(Date.now() - 65_000).toISOString()}
+      onStop={() => {}}
+    />,
+  );
+  expect(await liveStatus(html)).toEqual({
+    text: "Working. bun run typecheck",
+    regions: 1,
+    clocks: 0,
+    controls: 0,
+  });
+});
+
+test("elapsed changes leave the announcement alone, while a new phase and step change it", async () => {
+  const render = (seconds: number, value = status) => renderToStaticMarkup(
+    <RunningFooter status={value} model="m" startedAt={new Date(Date.now() - seconds * 1000).toISOString()} />,
+  );
+  const initial = await liveStatus(render(65));
+  expect(await liveStatus(render(125))).toEqual(initial);
+  expect((await liveStatus(render(125, {
+    ...status,
+    phase: "delegating",
+    label: "Delegating Verify checkout",
+    sentence: "Running the suite",
+  }))).text).toBe("Delegating Verify checkout. Running the suite");
+});
+
+test("renders the phase chip, the current step, the elapsed time and the Stop control", () => {
+  const startedAt = new Date(Date.now() - 65_000).toISOString();
+  const html = renderToStaticMarkup(
+    <RunningFooter status={status} model="Claude Sonnet 5" startedAt={startedAt} onStop={() => {}} />,
+  );
+  expect(html).toContain('data-session-ui="running-footer"');
+  expect(html).toContain('role="status"');
+  expect(html).toContain(">Working<");
+  expect(html).toContain("bun run typecheck");
+  expect(html).toContain("1m 5s");
+  expect(html).toContain("font-mono");
+  expect(html).toContain('aria-label="Stop this run"');
+  // The chip is a real button with a caret that opens the details popover.
+  expect(html).toContain('aria-label="Working. Run details"');
+  expect(html).toContain("ai-loading-pixel");
+});
+
+test("stopping disables the control and says so; no elapsed without a start time", () => {
+  const html = renderToStaticMarkup(<RunningFooter status={status} model="m" onStop={() => {}} stopping />);
+  expect(html).toContain('aria-label="Stopping this run"');
+  expect(html).toContain("disabled");
+  expect(html).not.toContain("font-mono");
+});
+
+test("running elapsed excludes minutes in the queue and stays stable on reload", () => {
+  const now = Date.now();
+  const run = { created_at: new Date(now - 365_000).toISOString() };
+  const start: ApiStep = {
+    id: "start", run_id: "run", idx: 0, kind: "task", chip: "boot",
+    label: "Preparing context and runtime", code_json: '{"phase":"preparing"}',
+    created_at: new Date(now - 65_000).toISOString(),
+  };
+  const render = (turn: { run: typeof run; steps: ApiStep[] }) => renderToStaticMarkup(
+    <RunningFooter status={status} model="m" startedAt={deriveRunningStartedAt(turn)} />,
+  );
+  expect(render({ run, steps: [] })).not.toContain("font-mono");
+  const running = { run, steps: [start] };
+  for (const snapshot of [running, JSON.parse(JSON.stringify(running))]) {
+    const html = render(snapshot);
+    expect(html).toContain("1m 5s");
+    expect(html).not.toContain("6m 5s");
+  }
+});
+
+test("a delegating phase names the agent in the chip", () => {
+  const html = renderToStaticMarkup(
+    <RunningFooter
+      status={{ ...status, phase: "delegating", label: "Delegating Verify checkout", sentence: "Running the suite" }}
+      model="m"
+    />,
+  );
+  expect(html).toContain(">Delegating Verify checkout<");
+  expect(html).toContain("Running the suite");
+  expect(html).not.toContain("Stop this run");
+});

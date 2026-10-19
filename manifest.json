@@ -1,0 +1,11 @@
+{
+  "upstream_commit": "9be3a7f96699feb9a83b7cd6179d326d27567d20",
+  "files_sha256": {
+    "LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+    "NOTICE": "23650ccaf830dbe9bc61ec52e593daa538156286d7a8fb768715d7e034557aca",
+    "README.md": "2b4a5e1b7ea9eaff3d70d6a640c0ac3002cd9fa41e57c74f32bceef1d0ea5b60",
+    "running-footer.test.tsx": "ebd44a683c5e79816f1e3637de6c4d427bdaef2949750dd0e11b45110971572d",
+    "running-footer-live-region.patch": "7ccd40e2151c08e017c138fe9e6d9995207c33c2c3321973f83a6cd23b44fdc1",
+    "running-footer.tsx": "431d7e32a1d1bd6fb417497733590bccd2ff495b108e18aed370f0bd5a531885"
+  }
+}

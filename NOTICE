@@ -1,0 +1,14 @@
+UseAgent running-footer contribution sample
+Copyright (c) 2026 the useAgent authors
+
+The two TypeScript source files are modified copies of:
+https://github.com/useagenthq/useagent/tree/9be3a7f96699feb9a83b7cd6179d326d27567d20/frontend/components/pro
+
+Modifications by brodyga45, 19 October 2026, with substantial Codex assistance:
+move the live region onto phase/step text and add two regression tests.
+Distributed under AGPL-3.0-only. See LICENSE.
+
+This is an independent contribution sample. No upstream endorsement,
+assignment, acceptance, payment or human screen-reader test is claimed.
+Dependencies imported by these files are not redistributed in this bundle.
+Their upstream licenses and attribution remain in the full UseAgent repository.
