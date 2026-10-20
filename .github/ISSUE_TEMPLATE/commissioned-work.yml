@@ -1,0 +1,53 @@
+name: Commission an OSS fix
+description: Discuss a funded fix or dependency upgrade before work starts.
+title: "[Commission] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one public open-source problem you would like to fund.
+        Read [scope and pricing](https://github.com/brodyga45/oss-contribution-proof-2026-10-19/blob/main/COMMISSIONING.md) first.
+        This inquiry creates no order or payment obligation. Work starts only after scope, acceptance, timing and payment terms are agreed.
+        Use public or synthetic examples. Do not include credentials, private code, personal data or banking details.
+  - type: input
+    id: upstream
+    attributes:
+      label: Public upstream repository or issue
+      placeholder: https://github.com/owner/project/issues/123
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Problem and reproduction
+      description: Include affected and target versions, the required platforms, steps to reproduce, and expected versus actual behavior.
+      placeholder: |
+        Current version:
+        Target version (if this is an upgrade):
+        Platform:
+        Reproduction with public or synthetic input:
+        Expected result:
+        Actual result:
+    validations:
+      required: true
+  - type: dropdown
+    id: acceptance
+    attributes:
+      label: What would you need to accept the work?
+      description: An upstream merge needs maintainer cooperation and must be agreed in the quote.
+      options:
+        - A tested patch and verification instructions
+        - An upstream merged contribution
+        - An initial fix followed by a separate maintenance cycle
+        - Help defining acceptance before a quote
+    validations:
+      required: true
+  - type: textarea
+    id: budget
+    attributes:
+      label: Budget and timing
+      description: State the available budget or range, currency and deadline. If you need a quote first, say so and describe the priority.
+      placeholder: "Example: EUR 300 budget; needed by 15 November; our team reviews acceptance."
+    validations:
+      required: true
+
