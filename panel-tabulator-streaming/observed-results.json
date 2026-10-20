@@ -1,0 +1,92 @@
+{
+  "recorded_at_utc": "2026-10-20T23:55:14.766620+00:00",
+  "panel": "1.9.4",
+  "pandas": "2.3.3",
+  "python": "3.12.11",
+  "scope": "Synthetic local-server browser observation; original library, no fix",
+  "cases": {
+    "local / size 10 / follow true": {
+      "rows": [
+        {
+          "index": 0,
+          "name": "Alice",
+          "n": 1
+        },
+        {
+          "index": 1,
+          "name": "Bob",
+          "n": 2
+        },
+        {
+          "index": 2,
+          "name": "Charlie",
+          "n": 3
+        },
+        {
+          "index": 3,
+          "name": "Delta",
+          "n": 4
+        }
+      ],
+      "python_rows": 4,
+      "stream_calls": 1,
+      "page": 1
+    },
+    "remote / size 10 / follow true": {
+      "rows": [
+        {
+          "index": 0,
+          "name": "Alice",
+          "n": 1
+        },
+        {
+          "index": 1,
+          "name": "Bob",
+          "n": 2
+        },
+        {
+          "index": 2,
+          "name": "Charlie",
+          "n": 3
+        }
+      ],
+      "python_rows": 4,
+      "stream_calls": 1,
+      "page": 1
+    },
+    "remote / size 3 / follow true": {
+      "rows": [
+        {
+          "index": 3,
+          "name": "Delta",
+          "n": 4
+        }
+      ],
+      "python_rows": 4,
+      "stream_calls": 1,
+      "page": 2
+    },
+    "remote / size 10 / follow false": {
+      "rows": [
+        {
+          "index": 0,
+          "name": "Alice",
+          "n": 1
+        },
+        {
+          "index": 1,
+          "name": "Bob",
+          "n": 2
+        },
+        {
+          "index": 2,
+          "name": "Charlie",
+          "n": 3
+        }
+      ],
+      "python_rows": 4,
+      "stream_calls": 1,
+      "page": 1
+    }
+  }
+}

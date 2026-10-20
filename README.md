@@ -37,3 +37,5 @@ AGPL-3.0-only, inherited from UseAgent. See LICENSE and NOTICE. Source changes a
 ## Additional independent proposal evidence
 
 [OpenQASM round-trip feasibility probe and video proposal](unitary-qasm3/README.md): three original local cases across two importers. This is an unfunded microgrant proposal; no completed fix or upstream acceptance is claimed. The independent files have their own MIT license; the UseAgent-derived material above retains its AGPL license.
+
+[Panel Tabulator streaming reproduction](panel-tabulator-streaming/README.md): four synthetic controls with a real local-server browser observation on Panel 1.9.4. Remote streaming on the same page stays stale while the local and page-boundary controls update. This is reproduction evidence, not a fix, accepted contribution or paid delivery. These original files are separately MIT-licensed.
