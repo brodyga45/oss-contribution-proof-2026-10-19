@@ -1,0 +1,11 @@
+antlr4-python3-runtime==4.13.2
+dill==0.4.1
+numpy==2.5.4
+openqasm3==1.0.1
+pip==26.2.1
+qiskit==2.6.0
+qiskit-qasm3-import==0.6.0
+rustworkx==0.18.1
+scipy==1.18.1
+stevedore==5.9.1
+typing-extensions==4.16.0

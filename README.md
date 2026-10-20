@@ -33,3 +33,7 @@ The upstream issue requires VoiceOver/NVDA verification, so structural tests and
 ## License and provenance
 
 AGPL-3.0-only, inherited from UseAgent. See LICENSE and NOTICE. Source changes and test assertions are in `running-footer-live-region.patch`; the source snapshot is pinned above. No unrelated upstream assets, private correspondence, account details or credentials are included.
+
+## Additional independent proposal evidence
+
+[OpenQASM round-trip feasibility probe and video proposal](unitary-qasm3/README.md): three original local cases across two importers. This is an unfunded microgrant proposal; no completed fix or upstream acceptance is claimed. The independent files have their own MIT license; the UseAgent-derived material above retains its AGPL license.

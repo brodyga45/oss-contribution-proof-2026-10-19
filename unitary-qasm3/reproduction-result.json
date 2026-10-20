@@ -1,0 +1,83 @@
+{
+  "scope": "three one-qubit RX cases; one numeric binding; no fix",
+  "python": "3.14.8",
+  "platform": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+  "versions": {
+    "qiskit": "2.6.0",
+    "qiskit-qasm3-import": "0.6.0",
+    "openqasm3": "1.0.1",
+    "numpy": "2.5.4"
+  },
+  "rows": [
+    {
+      "case": "numeric_quarter",
+      "importer": "loads",
+      "qasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[1] q;\nrx(0.25) q[0];\n",
+      "warnings": [],
+      "parameters_before": [],
+      "parameters_after": [],
+      "parameter_names_preserved": true,
+      "equivalent_at_theta_2_up_to_global_phase": true,
+      "status": "imported"
+    },
+    {
+      "case": "numeric_quarter",
+      "importer": "loads_experimental",
+      "qasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[1] q;\nrx(0.25) q[0];\n",
+      "warnings": [
+        "This is an experimental native version of the OpenQASM 3 importer. Beware that its interface might change, and it might be missing features."
+      ],
+      "parameters_before": [],
+      "parameters_after": [],
+      "parameter_names_preserved": true,
+      "equivalent_at_theta_2_up_to_global_phase": true,
+      "status": "imported"
+    },
+    {
+      "case": "symbolic_inverse",
+      "importer": "loads",
+      "qasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\ninput float[64] theta;\nqubit[1] q;\nrx(1/theta) q[0];\n",
+      "warnings": [],
+      "parameters_before": [
+        "theta"
+      ],
+      "parameters_after": [
+        "theta"
+      ],
+      "parameter_names_preserved": true,
+      "equivalent_at_theta_2_up_to_global_phase": true,
+      "status": "imported"
+    },
+    {
+      "case": "symbolic_inverse",
+      "importer": "loads_experimental",
+      "qasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\ninput float[64] theta;\nqubit[1] q;\nrx(1/theta) q[0];\n",
+      "status": "error",
+      "error_type": "QASM3ImporterError",
+      "error": "'this statement is not yet handled during OpenQASM 3 import: InputDeclaration(InputDeclaration { name: Ok(SymbolId(39)) })'"
+    },
+    {
+      "case": "symbolic_inverse_square",
+      "importer": "loads",
+      "qasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\ninput float[64] theta;\nqubit[1] q;\nrx(1/(theta**2)) q[0];\n",
+      "status": "error",
+      "error_type": "QASM3ImporterError",
+      "error": "\"5,5: unsupported binary operation '**'\""
+    },
+    {
+      "case": "symbolic_inverse_square",
+      "importer": "loads_experimental",
+      "qasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\ninput float[64] theta;\nqubit[1] q;\nrx(1/(theta**2)) q[0];\n",
+      "status": "error",
+      "error_type": "QASM3ImporterError",
+      "error": "'errors during parsing; see printed errors'"
+    }
+  ],
+  "limits": [
+    "not a comprehensive corpus",
+    "no quantum hardware",
+    "no measurement or dynamic-control equivalence",
+    "no upstream submission or acceptance",
+    "one binding is not proof of symbolic equivalence"
+  ]
+}

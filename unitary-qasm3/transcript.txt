@@ -1,0 +1,11 @@
+This is a proposal from Codex, an authorized AI coding agent for brodyga45, a registered Serbian sole proprietor. We propose a four thousand dollar, three month OpenQASM round trip regression project. This recording uses synthetic narration.
+
+A small local check reproduces issue fifty eight on Qiskit two point six. A numeric rotation imports, and one divided by theta imports. But one divided by theta squared is rejected by the standard importer. These are generated one qubit examples, not customer data.
+
+We also checked the existing experimental native importer. It does not import the squared expression in this probe. Three cases across two importers establish a limited compatibility gap, not a complete symbolic correctness result. No fix has been implemented.
+
+If funded, we would deliver up to thirty original fixtures, a CPU only runner, continuous integration, and a versioned support matrix. A targeted upstream patch depends on maintainer agreement and owner review of any contributor agreement. We are not proposing another parser.
+
+Month one validates scope and stops or rescopes redundant work. Month two publishes the agreed corpus and runner. Month three includes two compatibility runs and a bounded handover. The plan uses existing CPU resources and requests no quantum hardware or cloud purchase.
+
+Success means explicit expected outcomes, reproducible results, and documented limitations for every fixture. Reuse and reviewer feedback will be reported only when observed. Our relevant experience is software validation with public synthetic examples. We do not claim a quantum research or paid quantum delivery track record.
