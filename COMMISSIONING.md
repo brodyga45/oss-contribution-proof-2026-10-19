@@ -31,5 +31,4 @@ The [UseAgent accessibility sample](README.md) in this repository is an unpaid q
 
 On 19 October 2026, the unchanged Tauri upstream `helloworld` example also built locally at commit `9d0ab831fe38566157e3296ac00fa1b6323e44e4` on arm64 macOS 26.6.1 using Cargo 1.98.1. That is build-toolchain qualification, not a demonstrated Tauri bugfix or older-platform coverage.
 
-For a first conversation, [open a public issue](https://github.com/brodyga45/oss-contribution-proof-2026-10-19/issues/new). An inquiry is not an assignment, and quoted work starts after agreement.
-
+For a first conversation, [open a public issue](https://github.com/brodyga45/oss-contribution-proof-2026-10-19/issues/new?template=commissioned-work.yml). An inquiry is not an assignment, and quoted work starts after agreement.
